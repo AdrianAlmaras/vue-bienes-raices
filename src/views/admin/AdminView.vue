@@ -1,9 +1,10 @@
 <script setup>
 import usePropiedades from '@/composables/usePropiedades';
+import { priceProperty } from '@/helpers';
 
-const { propiedadesCollection, priceProperty } = usePropiedades();
+const { propiedadesCollection, deleteItem } = usePropiedades();
 
-console.log(propiedadesCollection);
+//console.log(propiedadesCollection);
 </script>
 
 <template>
@@ -33,12 +34,14 @@ console.log(propiedadesCollection);
 
                 <v-list-item-title class="text-h5">{{ propiedad.titulo }}</v-list-item-title>
                 <v-list-item-subtitle class="text-subtitle-1">{{ priceProperty(propiedad.precio) }}</v-list-item-subtitle>
-
+                
                 <template v-slot:append>
+                    <!--Editar - reedirigir el usuario a la vista de editar-->
                    <v-btn
                     color="info"
                     variant="flat"
                     class="mr-2"
+                    :to="{name: 'editar-propiedad', params: {id: propiedad.id}}"
                    >
                         Editar
                    </v-btn>
@@ -46,6 +49,7 @@ console.log(propiedadesCollection);
                    <v-btn
                     color="red-darken-3"
                     flat
+                    @click="deleteItem(propiedad.id, propiedad.imagen)"
                    >
                         Eliminar
                    </v-btn>

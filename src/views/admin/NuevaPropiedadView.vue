@@ -157,13 +157,13 @@ const submit = handleSubmit(async (values) => {
             ></v-textarea>
 
             <v-checkbox
-            v-model="alberca.value.value"
-            :error-messages="alberca.errorMessage.value"            
-            label="Alberca"/>
+                v-model="alberca.value.value"            
+                label="Alberca"
+            />
 
             <!-- Mapa -->
             <h2 class="font-weight-bold my-5 text-center">Ubicación</h2>             
-            <div class="pb-10">
+            <div class="pb-10" v-if="center">
                 <div style="height:500px;">
                     <LMap
                         v-model:zoom="zoom" 
